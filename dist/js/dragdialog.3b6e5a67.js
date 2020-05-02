@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["dragdialog"],{"6d88":function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},r=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("h1",[e._v("DragDialog")])])}],c=(t("310e"),{name:"DragDialog",data:function(){return{}}}),i=c,l=t("2877"),o=Object(l["a"])(i,a,r,!1,null,"0c77755c",null);n["default"]=o.exports}}]);
+//# sourceMappingURL=dragdialog.3b6e5a67.js.map

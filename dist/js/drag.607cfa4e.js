@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["drag"],{1056:function(e,t,n){"use strict";n.r(t);var r=function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)},a=[function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",[n("h1",[e._v("draglist")])])}],c=(n("310e"),{name:"DragList",data:function(){return{}}}),i=c,s=n("2877"),u=Object(s["a"])(i,r,a,!1,null,"417d7a72",null);t["default"]=u.exports}}]);
+//# sourceMappingURL=drag.607cfa4e.js.map

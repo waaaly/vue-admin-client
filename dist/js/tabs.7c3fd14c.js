@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["tabs"],{"36e0":function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},r=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("h1",[e._v("Tabs")])])}],s={name:"Tabs",data:function(){return{}}},c=s,u=t("2877"),i=Object(u["a"])(c,a,r,!1,null,"a8ff117a",null);n["default"]=i.exports}}]);
+//# sourceMappingURL=tabs.7c3fd14c.js.map

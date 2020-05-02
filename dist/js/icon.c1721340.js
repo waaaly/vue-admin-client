@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["icon"],{"771a":function(n,e,t){"use strict";t.r(e);var c=function(){var n=this,e=n.$createElement;n._self._c;return n._m(0)},r=[function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[t("h1",[n._v("icon")])])}],a={name:"Icon",data:function(){return{}}},i=a,o=t("2877"),u=Object(o["a"])(i,c,r,!1,null,"958fe004",null);e["default"]=u.exports}}]);
+//# sourceMappingURL=icon.c1721340.js.map
