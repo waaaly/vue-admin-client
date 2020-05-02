@@ -1,6 +1,6 @@
 # vue-admin-client
  基于vue、elementui的后台管理客户端
- [参考项目lin-xin 基于vue + element的后台管理系统解决方案](https://github.com/lin-xin/vue-manage-system.git)
+ >参考项目: [lin-xin 基于vue + element的后台管理系统解决方案](https://github.com/lin-xin/vue-manage-system.git)
 ## 安装项目依赖
 ```
 npm install
