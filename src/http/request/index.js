@@ -1,17 +1,27 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
-
+import qs from 'qs';
+import { Loading , Message } from 'element-ui'
+let loadingInstance;
 const http = axios.create({
-	baseUrl:"http://localhost:3000/api/v1",
+	baseURL:process.env.VUE_APP_URL ,
 	timeout:5000
 })
 
 http.interceptors.request.use(
 	config=>{
-		
+		 if(config.method === 'post') {
+		    config.data = qs.stringify(config.data);
+		  }
+		  loadingInstance = Loading.service({
+			lock: true,
+			text: 'Loading',
+			spinner: 'el-icon-loading',
+			background: 'rgba(0, 0, 0, 0.7)'
+		  });
+		  return config;  //添加这一行
 	},
 	error=>{
-		console.log(error)
+		console.log('request error:'+error)
 		return Promise.reject(error)
 	}
 )
@@ -20,6 +30,8 @@ http.interceptors.response.use(
 	response=>{
 		// 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据     
 		// 否则的话抛出错误
+		console.log('response success:' + response)
+		loadingInstance.close();
 		if (response.status === 200) {     
 			return Promise.resolve(response.data);        
 		} else {            
@@ -27,7 +39,8 @@ http.interceptors.response.use(
 		} 	
 	},
 	error=>{
-		console.log('err:' + error)
+		console.log('response error:' + error)
+		loadingInstance.close();
 		Message({
 		  message: error.message,
 		  type: 'error',

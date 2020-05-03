@@ -1,15 +1,15 @@
-import http from "../request/index.js"
+import http from "../request/index"
 
 export function login(data) {
-  return request({
+  return http({
     url: '/login',
     method: 'get',
-    params:{data}
+    params:{...data}
   })
 }
 
 export function signin(data) {
-  return request({
+  return http({
     url: '/signin',
     method: 'post',
     data

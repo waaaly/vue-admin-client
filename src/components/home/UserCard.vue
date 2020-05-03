@@ -9,11 +9,11 @@
 		</div>
 		<div class="login-info">
 			上次登录时间：
-			<span>{{user.logintime}}</span>
+			<span>{{user.loginTime}}</span>
 		</div>
 		<div class="login-info">
 			上次登录地点：
-			<span>{{user.loginlocation}}</span>
+			<span>{{user.location}}</span>
 		</div>
 	</el-card>
 </template>

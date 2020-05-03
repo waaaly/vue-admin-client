@@ -4,8 +4,8 @@
 			<div class="login-title" v-if="submitType=='login'">欢迎登录后台管理系统(Vue3.0)</div>
 			<div class="login-title" v-if="submitType=='signin'">欢迎注册后台管理系统(Vue3.0)</div>
 				<el-form :model="param" :rules="rules" :status-icon="true" ref='login' class="login-content">
-					<el-form-item prop="user" >
-						<el-input v-model="param.user" :placeholder=" submitType=='signin' ? '账号长度为4-8位' : '账号' ">
+					<el-form-item prop="name" >
+						<el-input v-model="param.name" :placeholder=" submitType=='signin' ? '账号长度为4-8位' : '账号' ">
 							<el-button slot="prepend" icon="el-icon-user"></el-button>
 						</el-input>
 					</el-form-item>
@@ -37,18 +37,19 @@
 </template>
 
 <script>
+	import {login,signin} from "../http/api/user.js"
 	export default{
 		name:"Login",
 		data(){
 			return{
 				submitType:'login',
 				param:{
-					user:'',
+					name:'',
 					pwd:'',
 					role:''
 				},
 				rules:{
-					user:[{
+					name:[{
 						required:true,
 						message:'请输入账号',
 						trigger:'blur',
@@ -77,24 +78,31 @@
 				}				
 			},
 			login(){
-				console.log('login')
-				// this.$axios.get('http://localhost:3000/api/v1/login',{
-				// 	params:this.params
-				// }).then((res) => {
-				//   localStorage.setItem('userInfo',JSON.stringify(res.data.userInfo));
-				//   this.$message.success(res.data.msg);
-				//   this.$router.push('/');
-				// })	
+				login(this.param).then(res=>{
+					console.log(res)
+					if(res.code==1){
+						this.$message.success(res.msg)
+						localStorage.setItem('userInfo',JSON.stringify(res.userInfo));
+						this.$router.push('/');
+					}else{
+						this.$message.error(res.msg)
+					}
+				})
 			},
 			signin(){
-				console.log('signin')
-				// this.$axios.get('http://localhost:3000/api/v1/login',{
-				// 	params:this.params
-				// }).then((res) => {
-				//   localStorage.setItem('userInfo',JSON.stringify(res.data.userInfo));
-				//   this.$message.success(res.data.msg);
-				//   this.$router.push('/');
-				// })	
+				signin(this.param).then(res=>{
+					console.log(res)
+					if(res.code==1){
+						this.$alert(res.msg,'注册成功',{
+							confirmButtonText:'前往登录',
+							callback:(res=>{
+								this.submitType='login'
+							})
+						})
+					}else{
+						this.$message.error(res.msg)
+					}
+				})
 			}
 		}
 	}
