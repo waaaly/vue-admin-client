@@ -15,12 +15,11 @@
 	</div>
 </template>
 <script>
-	import vSidebar from "../components/layout/Sidebar.vue"
-	import vHeader from "../components/layout/Header.vue"
-	import vTags from "../components/layout/Tags.vue"
-	import bus from "../components/layout/EventBus.js"
+	import vSidebar from "@/components/layout/Sidebar.vue"
+	import vHeader from "@/components/layout/Header.vue"
+	import vTags from "@/components/layout/Tags.vue"
+	import bus from "@/components/layout/EventBus.js"
 	export default{
-		name:'Home',
 		components:{
 			vSidebar,
 			vHeader,

@@ -22,10 +22,10 @@
 </template>
 
 <script>
-	import userCard from '../components/home/UserCard.vue'
-	import newsCard from '../components/home/NewsCard.vue'
-	import progressCard from '../components/home/ProgressCard.vue'
-	import todoCard from '../components/home/TodoCard.vue'
+	import userCard from '@/components/home/UserCard.vue'
+	import newsCard from '@/components/home/NewsCard.vue'
+	import progressCard from '@/components/home/ProgressCard.vue'
+	import todoCard from '@/components/home/TodoCard.vue'
 export default {
   name: 'Dashboard',
   data(){

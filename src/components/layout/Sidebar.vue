@@ -52,42 +52,42 @@
 				items:[
 					{
 						title:'系统首页',
-						index:'index',
+						index:'/admin/dashboard',
 						icon:'el-icon-s-home'
 					},
 					{
 						title:'基础表格',
-						index:'table',
+						index:'/admin/table',
 						icon:'el-icon-menu'
 					},
 					{
 						title:'选项卡',
-						index:'tabs',
+						index:'/admin/tabs',
 						icon:'el-icon-set-up'
 					},
 					{
 						title:'表单',
-						index:'3',
+						index:'/admin/table',
 						icon:'el-icon-notebook-1',
 						subs:[
 							{
 								title:'基本表单',
-								index:'form'
+								index:'/admin/form'
 							},
 							{
 								title:'文件上传',
-								index:'upload'
+								index:'/admin/upload'
 							},
 							{
 							    index: '3-2',
 							    title: '三级菜单',
 							    subs: [
 							        {
-							            index: 'editor',
+							            index: '/admin/editor',
 							            title: '富文本编辑器'
 							        },
 							        {
-							            index: 'markdown',
+							            index: '/admin/markdown',
 							            title: 'markdown编辑器'
 							        }
 							    ]
@@ -96,17 +96,17 @@
 					},
 					{
 						title:'图表',
-						index:'charts',
+						index:'/admin/charts',
 						icon:'el-icon-pie-chart'
 					},
 					{
 						title:'拖曳列表',
-						index:'draglist',
+						index:'/admin/draglist',
 						icon:'el-icon-monitor'
 					},
 					{
 						title:'拖曳弹框',
-						index:'dragdialog',
+						index:'/admin/dragdialog',
 						icon:'el-icon-rank'
 					},
 					
@@ -118,7 +118,7 @@
 		},
 		computed:{
 			onRoutes(){
-				return this.$route.path.replace('/','');
+				return this.$route.path;
 			}
 		},
 		created(){

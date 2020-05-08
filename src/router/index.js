@@ -9,86 +9,88 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    redirect:'/index'
+    component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
+	meta:{title:'网站首页'}
   },
   {
-	  path:'/',
-	  component:() => import(/* webpackChunkName:"home" */ '../views/Home.vue'),
+	  path:'/admin',
+	  component:() => import(/* webpackChunkName:"home" */ '../views/admin/Home.vue'),
+	  redirect:'/admin/dashboard',
 	  children:[
 		  {
-			path:'/index',
-			component:()=>import(/* webpackChunkName:"dashboard" */ '../views/Dashboard.vue'),
-			meta:{title:'系统首页'} 
+			path:'/admin/dashboard',
+			component:()=>import(/* webpackChunkName:"dashboard" */ '../views/admin/Dashboard.vue'),
+			meta:{title:'系统首页',admin:true} 
 		  },
 		  {
-			  path:'/table',
-			  component:()=>import(/* webpackChunkName:'table' */ '../views/Table.vue'),
-			  meta:{title:'基础表格'}
+			  path:'/admin/table',
+			  component:()=>import(/* webpackChunkName:'table' */ '../views/admin/Table.vue'),
+			  meta:{title:'基础表格',admin:true}
 		  },
 		  {
-			  path:'/icon',
-			  component:()=>import(/* webpackChunkName:'icon'*/ '../views/Icon.vue'),
-			  meta:{title:'基础图表'}
+			  path:'/admin/icon',
+			  component:()=>import(/* webpackChunkName:'icon'*/ '../views/admin/Icon.vue'),
+			  meta:{title:'基础图表',admin:true}
 		  },
 		  {
-			  path:'/tabs',
-			  component:()=>import(/*webpackChunkName:'tabs'*/ '../views/Tabs.vue'),
-			  meta:{title:'选项卡'}
+			  path:'/admin/tabs',
+			  component:()=>import(/*webpackChunkName:'tabs'*/ '../views/admin/Tabs.vue'),
+			  meta:{title:'选项卡',admin:true}
 		  },
 		  {
-			  path:'/form',
-			  component:()=>import(/*webpackChunkName:'form'*/ '../views/Form.vue'),
-			  meta:{title:'基础表单'}
+			  path:'/admin/form',
+			  component:()=>import(/*webpackChunkName:'form'*/ '../views/admin/Form.vue'),
+			  meta:{title:'基础表单',admin:true}
 		  },
 		  {
 		      // 富文本编辑器组件
-		      path: '/editor',
-		      component: () => import(/* webpackChunkName: "editor" */ '../views/Editor.vue'),
-		      meta: { title: '富文本编辑器' }
+		      path: '/admin/editor',
+		      component: () => import(/* webpackChunkName: "editor" */ '../views/admin/Editor.vue'),
+		      meta: { title: '富文本编辑器' ,admin:true}
 		  },
 		  {
 		      // markdown组件
-		      path: '/markdown',
-		      component: () => import(/* webpackChunkName: "markdown" */ '../views/Markdown.vue'),
-		      meta: { title: 'markdown编辑器' }
+		      path: '/admin/markdown',
+		      component: () => import(/* webpackChunkName: "markdown" */ '../views/admin/Markdown.vue'),
+		      meta: { title: 'markdown编辑器' ,admin:true}
 		  },
 		  {
 		      // 图片上传组件
-		      path: '/upload',
-		      component: () => import(/* webpackChunkName: "upload" */ '../views/Upload.vue'),
-		      meta: { title: '文件上传' }
+		      path: '/admin/upload',
+		      component: () => import(/* webpackChunkName: "upload" */ '../views/admin/Upload.vue'),
+		      meta: { title: '文件上传' ,admin:true}
 		  },
 		  {
 		      // vue-schart组件
-		      path: '/charts',
-		      component: () => import(/* webpackChunkName: "chart" */ '../views/Charts.vue'),
-		      meta: { title: 'schart图表' }
+		      path: '/admin/charts',
+		      component: () => import(/* webpackChunkName: "chart" */ '../views/admin/Charts.vue'),
+		      meta: { title: 'schart图表' ,admin:true}
 		  },
 		  {
 		      // 拖拽列表组件
-		      path: '/draglist',
-		      component: () => import(/* webpackChunkName: "drag" */ '../views/DragList.vue'),
-		      meta: { title: '拖拽列表' }
+		      path: '/admin/draglist',
+		      component: () => import(/* webpackChunkName: "drag" */ '../views/admin/DragList.vue'),
+		      meta: { title: '拖拽列表' ,admin:true}
 		  },
 		  {
 		      // 拖拽Dialog组件
-		      path: '/dragdialog',
-		      component: () => import(/* webpackChunkName: "dragdialog" */ '../views/DragDialog.vue'),
-		      meta: { title: '拖拽弹框' }
-		  },
-		  {
-		      path: '/404',
-		      component: () => import(/* webpackChunkName: "404" */ '../views/404.vue'),
-		      meta: { title: '404' }
+		      path: '/admin/dragdialog',
+		      component: () => import(/* webpackChunkName: "dragdialog" */ '../views/admin/DragDialog.vue'),
+		      meta: { title: '拖拽弹框' ,admin:true}
 		  },
 	  ]
   },
   {
-    path: '/login',
+    path: '/admin/login',
     name: 'Login',
-	component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-	meta:{title:'登录'}
-  }
+	component: () => import(/* webpackChunkName: "login" */ '../views/admin/Login.vue'),
+	meta:{title:'登录',admin:true}
+  },
+  {
+      path: '*',
+      component: () => import(/* webpackChunkName: "404" */ '../views/404.vue'),
+      meta: { title: '404' }
+  },
 ]
 
 const router = new VueRouter({
@@ -99,20 +101,27 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next)=>{
 	NProgress.start()
-	document.title = `后台管理系统 | ${to.meta.title}`;
-	const userInfo = JSON.parse(localStorage.getItem('userInfo'))
-	if(!userInfo && to.path !== '/login'){
-		next('/login')
-	}else {
-        // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
-        if (navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor') {
-            Vue.prototype.$alert('vue-quill-editor组件不兼容IE10及以下浏览器，请使用更高版本的浏览器查看', '浏览器不兼容通知', {
-                confirmButtonText: '确定'
-            });
-        } else {
-            next();
-        }
-    }
+	console.log(to.meta)
+	if(to.meta.admin){
+		console.log('admin')
+		document.title = `后台管理系统 | ${to.meta.title}`;
+		const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+		if(!userInfo && to.path !== '/admin/login'){
+			next('/admin/login')
+		}else {
+		    // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
+		    if (navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/admin/editor') {
+		        Vue.prototype.$alert('vue-quill-editor组件不兼容IE10及以下浏览器，请使用更高版本的浏览器查看', '浏览器不兼容通知', {
+		            confirmButtonText: '确定'
+		        });
+		    } else {
+		        next();
+		    }
+		}
+	}else{
+		console.log('home')
+		next();
+	}
 })
 
 router.afterEach((to,from,next)=>{

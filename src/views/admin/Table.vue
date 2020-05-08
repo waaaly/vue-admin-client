@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import manufacturerTable from '../components/table/ManufacturerTable.vue'
+	import manufacturerTable from '@/components/table/ManufacturerTable.vue'
 export default {
   name: 'Table',
   data(){

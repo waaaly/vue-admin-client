@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <h1>404</h1>
+  <div class="img-box">
+    <img class="img" src="../assets/img/404.png" ></img>
   </div>
 </template>
 
@@ -17,5 +17,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.img-box{
+	display: flex;
+	    align-items: center;
+	    justify-content: center;
+}
+.img{
+	width: 100vh;
+}
 </style>

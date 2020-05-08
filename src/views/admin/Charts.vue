@@ -40,10 +40,10 @@
 </template>
 
 <script>
-	import vBar from "../components/charts/Bar.vue"
-	import vMap from "../components/charts/Map.vue"
-	import vHistogram from "../components/charts/Histogram.vue"
-	import wordCloud from "../components/charts/WordCloud.vue"
+	import vBar from "@/components/charts/Bar.vue"
+	import vMap from "@/components/charts/Map.vue"
+	import vHistogram from "@/components/charts/Histogram.vue"
+	import wordCloud from "@/components/charts/WordCloud.vue"
 export default {
   name: 'Charts',
   data(){

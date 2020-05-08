@@ -37,7 +37,7 @@
 </template>
 
 <script>
-	import {login,signin} from "../http/api/user.js"
+	import {login,signin} from "@/http/api/user.js"
 	export default{
 		name:"Login",
 		data(){
@@ -113,7 +113,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../assets/img/login-bg.jpg);
+    background-image: url(../../assets/img/login-bg.jpg);
     background-size: 100%;
 }
 .login-title {

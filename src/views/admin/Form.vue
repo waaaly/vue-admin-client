@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import todoForm from "../components/form/TodoForm.vue"
+	import todoForm from "@/components/form/TodoForm.vue"
 export default {
   name: 'From',
   data(){

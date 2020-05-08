@@ -32,6 +32,7 @@
 						  </span>
 						<el-dropdown-menu slot="dropdown">
 							<el-dropdown-item command="loginout">注销登出</el-dropdown-item>
+							<el-dropdown-item command="sysout">退出系统</el-dropdown-item>
 						</el-dropdown-menu>
 					</el-dropdown>
 				</el-col>
@@ -61,7 +62,10 @@
 			onCommand(cmd){
 				if(cmd=="loginout"){
 					localStorage.removeItem('userInfo');
-					this.$router.push("/login");
+					this.$router.push("/admin/login");
+				}
+				if(cmd=="sysout"){
+					this.$router.push("/");
 				}
 			},
 			// 侧边栏折叠
