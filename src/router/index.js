@@ -18,6 +18,12 @@ Vue.use(VueRouter)
 	  redirect:'/admin/dashboard',
 	  children:[
 		  {
+		    path: '/admin/login',
+		    name: 'Login',
+		  	component: () => import(/* webpackChunkName: "login" */ '../views/admin/Login.vue'),
+		  	meta:{title:'登录',admin:true}
+		  },
+		  {
 			path:'/admin/dashboard',
 			component:()=>import(/* webpackChunkName:"dashboard" */ '../views/admin/Dashboard.vue'),
 			meta:{title:'系统首页',admin:true} 
@@ -81,10 +87,9 @@ Vue.use(VueRouter)
 	  ]
   },
   {
-    path: '/admin/login',
-    name: 'Login',
-	component: () => import(/* webpackChunkName: "login" */ '../views/admin/Login.vue'),
-	meta:{title:'登录',admin:true}
+	 path:'/webchat',
+	 component:()=>import(/* webpackChunkName:"webchat" */ '../views/webchat/Index.vue'),
+
   },
   {
       path: '*',
