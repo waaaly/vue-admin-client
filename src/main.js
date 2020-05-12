@@ -9,7 +9,7 @@ import vCharts from 'v-charts'
 import axios from 'axios'
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
-
+import moment from 'moment'
  // const SocketInstance = socketio('http://localhost:3000');
  // Vue.use(new VueSocketIO, SocketInstance)
 // Vue.use(new VueSocketIO({debug: true, }),SocketInstance)
@@ -21,7 +21,7 @@ import VueSocketIO from 'vue-socket.io'
 // vuex: {  
 // }  
 // }),SocketInstance)  
-
+Vue.prototype.$moment = moment
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

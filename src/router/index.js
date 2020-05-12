@@ -87,9 +87,27 @@ Vue.use(VueRouter)
 	  ]
   },
   {
-	 path:'/webchat',
-	 component:()=>import(/* webpackChunkName:"webchat" */ '../views/webchat/Index.vue'),
-
+	path:'/webchat',
+	component:()=>import(/* webpackChunkName:"webchat" */ '../views/webchat/Index.vue'),
+	redirect:'/webchat/roomlist',
+	children:[
+		{
+			path:'/webchat/roomlist',
+			component:()=>import(/* webpackChunkName:"roomlist" */ '../views/webchat/RoomList'),
+		},
+		{
+			path:'/webchat/addroom',
+			component:()=>import(/* webpackChunkName:"roomlist" */ '../views/webchat/AddRoom'),
+		},
+		{
+			path:'/webchat/joinroom',
+			component:()=>import(/* webpackChunkName:"roomlist" */ '../views/webchat/JoinRoom'),
+		},
+		{
+			path:'/webchat/chatroom',
+			component:()=>import(/* webpackChunkName:"roomlist" */ '../views/webchat/ChatRoom'),
+		},
+	]
   },
   {
       path: '*',

@@ -2,25 +2,7 @@
 	<el-container>
 	  <el-header>欢迎使用网页实时聊天室</el-header>
 	  <el-main>	 
-	   <div v-if="!login">
-		   <el-form  label-width="80px" :model="form">
-				<el-form-item label="名称">
-				  <el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="性别">
-				  <el-radio-group v-model="form.sex">
-						<el-radio label="小公举"></el-radio>
-						<el-radio label="小公主"></el-radio>
-				  </el-radio-group>
-				</el-form-item>
-				<el-form-item>
-				  <el-button type="primary" @click="onLogin">进入聊天室</el-button>
-				</el-form-item>
-		   </el-form>
-	   </div> 
-		<div v-if="login">
-			<el-button @click="onSignOut">退出聊天室</el-button>
-		</div>
+	   <router-view></router-view>
 	  </el-main>
 	</el-container>
 </template>
@@ -38,16 +20,26 @@
 				},
 				socket:{},
 				login:false,
+				textarea:'',
+				userNum:0,
+				userList:[]
 			}
 		},
 		methods:{
-			onLogin(){
-				
+			onLogin(){		
 				this.socket.emit('join',this.form.name)
 			},
 			onSignOut(){
 				console.log(this.socket.id)
-				this.socket.emit('signout')
+				this.socket.disconnect()
+				this.$router.replace('/')
+			},
+			onSendMsg(value){
+				var msg = {
+					time:this.$moment(new Date.now()).format('MMMM Do YYYY, h:mm:ss a'),
+					content:this.textarea
+				}
+				this.socket.emit('send_msg',msg)
 			}
 		},
 		computed:{
@@ -59,25 +51,38 @@
 			this.socket.on('login',(data)=>{
 				console.log('login')
 				console.log(data)
+				this.userNum == 0? this.userNum = 1:''
+				this.userNum == 0? this.userList= [{name:data.userName}]:''
 				this.login = true
 			})
 			this.socket.on('user_joined',(data)=>{
 				console.log('userjoined')
 				console.log(data)
+				this.userNum = data.userNum
+				this.userList = data.userList
+				this.$message.info(data.msg)
 			})
-			this.socket.on('signout',(data)=>{
-				console.log('signout')
-				this.socket.disconnect()
-				this.$router.replace('/')
+			this.socket.on('user_lfet',(data)=>{
+				console.log('user_lfet')
+				this.userNum = data.userNum
+				this.userList = data.userList
+				this.$message.info(data.msg)
 			})
-			this.socket.on('disconnect',(data)=>{
-				console.log('disconnect')				
+			this.socket.on('bro_msg',(data)=>{
+				console.log('msg:',data)
 			})
 		}
 	}
 </script>
 
 <style>
+	.el-container{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 	.el-header {
 	    background-color: #B3C0D1;
 	    color: #333;

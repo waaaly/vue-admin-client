@@ -76,6 +76,9 @@
 		mounted(){
 			 window.addEventListener('scroll', this.handleScroll, true); 
 		},
+		destroyed(){
+			window.removeEventListener('scroll', this.handleScroll, true)
+		},
 		methods:{
 			handleScroll(){
 				var t = document.getElementById('bodyright').getBoundingClientRect().top ;
