@@ -37,7 +37,7 @@
 </template>
 
 <script>
-	import {login,signin} from "@/http/api/user.js"
+	import {login,signin} from "@/utils/http/api/user.js"
 	export default{
 		name:"Login",
 		data(){

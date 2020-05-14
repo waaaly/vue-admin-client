@@ -110,6 +110,10 @@ Vue.use(VueRouter)
 	]
   },
   {
+		path:'/webplayer',
+		component:()=>import(/* webpackChunkName:'playerindex' */ '../views/webplayer/Index'),
+  },
+  {
       path: '*',
       component: () => import(/* webpackChunkName: "404" */ '../views/404.vue'),
       meta: { title: '404' }
