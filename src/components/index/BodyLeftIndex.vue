@@ -1,87 +1,92 @@
 <template>
 	<div class="container">
 	    <el-row>
-	        <el-col :span="24" class="s-item tcommonBox" v-for="(item,index) in [1,2,3,4,5,6,7,8,9,10]" :key="'like'+index">
+	        <el-col :span="24" class="s-item tcommonBox" v-for="(item,index) in articles" :key="index">
+				<!-- <div v-if="item"></div> -->
 	            <span class="s-round-date">
-	                <span class="month">5月</span>
-					<span class="day">6</span>
+	                <span class="month">{{item.monthDate}}月</span>
+					<span class="day">{{item.dayDate}}</span>
 	            </span>
 	            <header>
 	                <h1>
-	                    <a :href="'#/DetailShare?aid='+articleList.id" target="_blank">
-	                        {{articleList.title}}
+	                    <a :href="'#/DetailShare?aid='+item.articleId" target="_blank">
+	                        {{item.title}}
 	                    </a>
 	                </h1>
 	                <h2>
 	                    <i class="el-icon-user-solid"></i>发表于
-	                    <i class="el-icon-time"></i>{{articleList.create_time}} •
-	                    <i class="el-icon-view"></i>{{articleList.browse_count}} 次围观 •
-	                    <i class="el-icon-chat-dot-round"></i>活捉 {{articleList.comment_count}} 条 •
+	                    <i class="el-icon-time"></i>{{item.createDate}} •
+	                    <i class="el-icon-view"></i>{{item.viewNum}} 次围观 •
+	                    <i class="el-icon-chat-dot-round"></i>活捉 {{item.commetnNum}} 条 •
 	                    <span class="rateBox">
-	                        <i class="el-icon-medal"></i>{{articleList.like_count?articleList.like_count:0}}点赞 •
-	                        <i class="el-icon-star-on"></i>{{articleList.collect_count?articleList.collect_count:0}}收藏
+	                        <i class="el-icon-medal"></i>{{item.likeNum}}点赞 •
+	                        <i class="el-icon-star-on"></i>{{item.collectNum}}收藏
 	                    </span>
 	                </h2>
 					<div class="label">
-					    <a :href="'#/Share?classId='+item.class_id">原创</a>
+					    <p >原创</p>
 					</div>
 	            </header>
 	            <div class="article-content">
 	                <p style="text-indent:2em;">
-	                    {{articleList.description}}
+	                    {{item.description}}
 	                </p>
 	                <p style="max-height:300px;overflow:hidden;text-align:center;">
-	                    <img :src="articleList.image" alt="" class="maxW">
+	                    <img :src="item.image" alt="" class="maxW">
 	                </p>
 	            </div>
 	            <div class="viewdetail">
-	                <a class="cancelbtn tcolors-bg" href="javascript:void(0);" >取消{{like==1?'喜欢':'收藏'}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                <a class="tcolors-bg" :href="'#/DetailShare?aid='+articleList.id" target="_blank">
+	                <a class="tcolors-bg" :href="'#/DetailShare?aid='+item.id" target="_blank">
 	                    阅读全文>>
 	                </a>
 	            </div>
 	        </el-col>
 	        <el-col class="viewmore">
-	            <a v-show="hasMore" class="tcolors-bg" href="javascript:void(0);">点击加载更多</a>
-	            <a v-show="!hasMore" class="tcolors-bg" href="javascript:void(0);">暂无更多数据</a>
+	             <div class="block">
+	                <el-pagination
+						  @current-change="handleCurrentChange"
+						  :current-page.sync="currentPage"
+						  :page-size="5"
+						  layout="prev, pager, next, jumper"
+						  :total="articleList.length">
+					</el-pagination>
+	              </div>
 	        </el-col>
 	    </el-row>
 	</div>
 </template>
 
 <script>
+	import { findArticle } from "@/utils/http/api/article.js"
 	export default {
 	    data() { //选项 / 数据
 	        return {
-				articleList:{
-					id:11,
-					create_time:'2018年07月16日',
-					title:'helloworld',
-					browse_count:233,
-					comment_count:534,
-					like_count:123,
-					collect_count:856,
-					description:'mpvue 同事打包成H5和微信小程序',
-					image:'http://mangoya.cn/upload/project/20180925/dc98df7ef7f58883c6de11d94a45273b.jpg'
-				},
+				articleList:[],
 	            artId:0,//文章id
-	            hasMore:true,//是否还有更多数据
-	            like:1,//
 	            articleName:'',
-	            userId:''
+	            userId:'',
+				currentPage:1,
 	        }
 	    },
 	    methods: { //事件处理器
-	        
+	        handleCurrentChange(val){
+				this.currentPage = val
+			}
 	    },
-	    components: { //定义组件
-	
-	    },
+	    computed:{
+			articles(){
+				return this.articleList.slice((this.currentPage - 1) * 5 , this.currentPage * 5)
+			}
+		},
 	    watch: {
 	      
-	     },
+	    },
 	    created() { //生命周期函数
-	       
+	       findArticle().then(res=>{
+			   this.articleList = res
+		   }).catch(err=>{
+			   console.log(err)
+		   })
 	    }
 	}
 </script>
@@ -203,8 +208,21 @@
 	  padding: 5px 10px;
 	  border-radius: 5px;
 	}
+	.viewmore{
+		text-align: center;
+		background: #fff;  
+		border-radius: 5px;
+		text-align: center;
+		height: 30px;
+		line-height: 30px;
+		display: block;
+	}
+
+	a:hover  {
+		background: #18ffe4;
+	}
 	.tcolors-bg {
-	    background: #97dffd;
+		background: #97dffd;   
 	    -webkit-transition: all 0.3s ease-in-out;
 	    transition: all 0.3s ease-in-out;
 	}

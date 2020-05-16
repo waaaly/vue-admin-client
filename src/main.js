@@ -10,17 +10,10 @@ import axios from 'axios'
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
 import moment from 'moment'
- // const SocketInstance = socketio('http://localhost:3000');
- // Vue.use(new VueSocketIO, SocketInstance)
-// Vue.use(new VueSocketIO({debug: true, }),SocketInstance)
-
-// Vue.use(new VueSocketIO({  
-// debug: true,  
-// // 服务器端地址  
-// connection: 'http://localhost:3000',  
-// vuex: {  
-// }  
-// }),SocketInstance)  
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
 Vue.prototype.$moment = moment
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false

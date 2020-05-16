@@ -2,7 +2,7 @@ import http from "../request/index"
 
 export function login(data) {
   return http({
-    url: '/v1/login',
+    url: '/admin/login',
     method: 'get',
     params:{...data}
   })
@@ -10,7 +10,7 @@ export function login(data) {
 
 export function signin(data) {
   return http({
-    url: '/v1/signin',
+    url: '/admin/signin',
     method: 'post',
     data
   })

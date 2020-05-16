@@ -73,7 +73,7 @@
 <style>
 	.header-container{
 		background-color: #8c8c8f; 
-		opacity: 0.7;
+		opacity: 0.8;
 		position: fixed;
 		left: 0;
 		top: 0;
@@ -89,15 +89,17 @@
 		background-size:100% 100%;
 	}
 	.body-container{
-		margin-top: 120px;
+		margin-top: 180px;
+		margin-bottom: 50px;
 	}
 	.canvas-bg{
-		    position: fixed;
-		    left: 0px;
-		    top: 0px;
-		    z-index: -100;
-		    pointer-events: none;
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		z-index: -100;
+		pointer-events: none;
 		width: 100%;
+		height: 100%;
 	}
 	.foot-container{
 		background-color: #232323;	

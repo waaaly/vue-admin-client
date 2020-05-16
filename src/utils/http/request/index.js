@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs';
-import { Loading , Message } from 'element-ui'
-let loadingInstance;
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 const http = axios.create({
 	baseURL:process.env.VUE_APP_URL ,
 	timeout:5000
@@ -12,12 +12,7 @@ http.interceptors.request.use(
 		 if(config.method === 'post') {
 		    config.data = qs.stringify(config.data);
 		  }
-		  loadingInstance = Loading.service({
-			lock: true,
-			text: 'Loading',
-			spinner: 'el-icon-loading',
-			background: 'rgba(0, 0, 0, 0.7)'
-		  });
+		  NProgress.start()
 		  return config;  //添加这一行
 	},
 	error=>{
@@ -31,7 +26,7 @@ http.interceptors.response.use(
 		// 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据     
 		// 否则的话抛出错误
 		console.log('response success:' + response)
-		loadingInstance.close();
+		NProgress.done()
 		if (response.status === 200) {     
 			return Promise.resolve(response.data);        
 		} else {            
@@ -40,7 +35,7 @@ http.interceptors.response.use(
 	},
 	error=>{
 		console.log('response error:' + error)
-		loadingInstance.close();
+		NProgress.done()
 		Message({
 		  message: error.message,
 		  type: 'error',

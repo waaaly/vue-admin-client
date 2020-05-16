@@ -4,11 +4,11 @@
 	        <div class="r1-head">
 	            <img src="../../assets/img/right-logo.jpg" alt="">
 	            <h1 >
-	                <span>女王</span>Waaaly
+	                <span>Waaaly</span>
 	            </h1>
 	        </div>
 	        <div class="r1-body">
-	            <p>你能抓到我么？</p>
+	            <p>可以在这里遇见我呢~</p>
 	            <div class="catch-me" >
 	                <div >
 	                    <el-tooltip  class="item"  content="Github" placement="top" >
@@ -40,7 +40,7 @@
 	    </section>
 	    <section :class="fixDo?'rs2 fixed':'rs2'" @click="lovemeFun">
 	        <p>
-	            可以给我一颗小心心嘛❤?
+	            可以给我一颗小心心嘛❤~~
 	        </p>
 	        <div class="">
 	            <i :class="loveme?'heart active':'heart'" ></i>
@@ -111,6 +111,8 @@
 			    var timer = setInterval(function(){
 			          //获取滚动条距离顶部高度
 			          var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+					  console.log(osTop)
+					 // var osTop = document.getElementById('bodyright').getBoundingClientRect().top
 			          var ispeed = Math.floor(-osTop / 7);
 			          document.documentElement.scrollTop = document.body.scrollTop = osTop+ispeed;
 			          //到达顶部，清除定时器
@@ -321,7 +323,7 @@
 	.toTop{
 	    position: fixed;
 	    right:40px;
-	    top:-150px;
+	    top:60px;
 	    z-index: 101;
 	    width:70px;
 	    height:900px;

@@ -54,6 +54,7 @@
 		},
 		computed:{
 			username(){
+				if(!localStorage.getItem('userInfo')) return false;
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 				return userInfo.name;
 			}

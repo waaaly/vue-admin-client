@@ -10,19 +10,44 @@ Vue.use(VueRouter)
   {
     path: '/',
     component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
-	meta:{title:'网站首页'}
+	meta:{title:'博客首页'},
+  },
+  {
+	path: '/list',
+	component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
+	meta:{title:'文章列表'},  
+  },
+  {
+  	path: '/detail',
+	component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
+  	meta:{title:'文章详情'},  
+  },
+  {
+  	path: '/assets',
+	component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
+  	meta:{title:'资源整理'},  
+  },
+  {
+  	path: '/message',
+	component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
+  	meta:{title:'留言墙'},  
+  },
+  {
+	path:'/manage',
+	component:()=>import(/* webpackChunkName:"manage" */ '../views/blog/Manage.vue'),
+	meta:{title:'站长中心'}
+  },
+  {
+    path: '/admin/login',
+    name: 'Login',
+  	component: () => import(/* webpackChunkName: "login" */ '../views/admin/Login.vue'),
+  	meta:{title:'登录',admin:true}
   },
   {
 	  path:'/admin',
 	  component:() => import(/* webpackChunkName:"home" */ '../views/admin/Home.vue'),
 	  redirect:'/admin/dashboard',
 	  children:[
-		  {
-		    path: '/admin/login',
-		    name: 'Login',
-		  	component: () => import(/* webpackChunkName: "login" */ '../views/admin/Login.vue'),
-		  	meta:{title:'登录',admin:true}
-		  },
 		  {
 			path:'/admin/dashboard',
 			component:()=>import(/* webpackChunkName:"dashboard" */ '../views/admin/Dashboard.vue'),
@@ -128,7 +153,6 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next)=>{
 	NProgress.start()
-	console.log(to.meta)
 	if(to.meta.admin){
 		console.log('admin')
 		document.title = `后台管理系统 | ${to.meta.title}`;
@@ -146,7 +170,6 @@ router.beforeEach((to,from,next)=>{
 		    }
 		}
 	}else{
-		console.log('home')
 		next();
 	}
 })
