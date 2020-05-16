@@ -23,12 +23,14 @@ async function list() {
   }
 }
 //上传文件到指定目录
-async function put () {
+async function put (target,src) {
   try {
     //object-name可以自定义为文件名（例如file.txt）
-	//或目录（例如abc/test/file.txt）的形式，实现将文件上传至当前Bucket或Bucket下的指定目录。
-    let result = await client.put('object-name', 'local-file');
-    console.log(result);
+	//或目录（例如abc/test/file.txt）的形式，
+	//实现将文件上传至当前Bucket或Bucket下的指定目录。
+	// src 支持类型Buffer/Blob/File
+	let result = await client.put(target, src);
+    return result
   } catch (e) {
     console.log(e);
   }

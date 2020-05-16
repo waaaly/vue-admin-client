@@ -12,25 +12,25 @@
 	            <div class="catch-me" >
 	                <div >
 	                    <el-tooltip  class="item"  content="Github" placement="top" >
-	                        <a  :href="waaaly.git" target="_blank" ><i class="fa fa-fw fa-github"></i></a>
+	                        <a  :href="waaaly.git" target="_blank" ><i class="">G</i></i></a>
 	                    </el-tooltip>
 	                    <el-tooltip class="item" effect="dark" content="QQ" placement="top">
-	                        <a  :href="waaaly.qq" target="_blank"><i class="fa fa-fw fa-qq"></i></a>
+	                        <a  :href="waaaly.qq" target="_blank"><i class="">Q</i></a>
 	                    </el-tooltip>
 	                    <el-tooltip class="item" effect="dark" content="微博" placement="top">
-	                        <a :href="waaaly.sina" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+	                        <a :href="waaaly.sina" target="_blank"><i class="">W</i></a>
 	                    </el-tooltip>
 	                </div>
 	                <div >
 	                    <el-tooltip class="item" effect="dark" content="微信" placement="top">
-	                        <a :href="waaaly.wechat" target="_blank"><i class="fa fa-fw fa-wechat"></i></a>
+	                        <a :href="waaaly.wechat" target="_blank"><i class="">V</i></a>
 	                    </el-tooltip>
 	                    <el-tooltip class="item" effect="dark" content="CSDN" placement="top">
 	                        <a :href="waaaly.csdn" target="_blank"><i class="">C</i></a>
 	                    </el-tooltip>
-	                    <el-tooltip class="item" effect="dark" content="简历" placement="top">
+	                    <!-- <el-tooltip class="item" effect="dark" content="简历" placement="top">
 	                        <a :href="waaaly.job" target="_blank"><i class="fa fa-fw fa-file-word-o"></i></a>
-	                    </el-tooltip>
+	                    </el-tooltip> -->
 	                    <el-tooltip class="item" effect="dark" content="更多" placement="top">
 	                        <a href="/Aboutme" ><i class="el-icon-more"></i></a>
 	                    </el-tooltip>
@@ -182,6 +182,8 @@
 	    margin-bottom: 7px;
 	    position: relative;
 	    text-decoration: none;
+		color: #444;
+		background-color: #fff;
 	}
 	.rightlistBox .r1-body .catch-me a:hover i{
 	    color:#fff;

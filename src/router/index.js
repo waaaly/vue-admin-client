@@ -18,7 +18,7 @@ Vue.use(VueRouter)
 	meta:{title:'文章列表'},  
   },
   {
-  	path: '/detail',
+  	path: '/detail/:id',
 	component:() => import(/* webpackChunkName:"index" */'../views/Index.vue'),
   	meta:{title:'文章详情'},  
   },

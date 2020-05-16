@@ -9,7 +9,7 @@
 	            </span>
 	            <header>
 	                <h1>
-	                    <a :href="'#/DetailShare?aid='+item.articleId" target="_blank">
+	                    <a :href="'/detail?id='+item.articleId" target="_blank">
 	                        {{item.title}}
 	                    </a>
 	                </h1>
@@ -36,7 +36,7 @@
 	                </p>
 	            </div>
 	            <div class="viewdetail">
-	                <a class="tcolors-bg" :href="'#/DetailShare?aid='+item.id" target="_blank">
+	                <a class="tcolors-bg" @click="onDetail(item.articleId)">
 	                    阅读全文>>
 	                </a>
 	            </div>
@@ -71,6 +71,11 @@
 	    methods: { //事件处理器
 	        handleCurrentChange(val){
 				this.currentPage = val
+			},
+			onDetail(id){
+				this.$router.push({
+					path:`/detail/${id}`
+				})
 			}
 	    },
 	    computed:{
@@ -81,6 +86,7 @@
 	    watch: {
 	      
 	    },
+
 	    created() { //生命周期函数
 	       findArticle().then(res=>{
 			   this.articleList = res

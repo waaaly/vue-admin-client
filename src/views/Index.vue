@@ -78,7 +78,7 @@
 		left: 0;
 		top: 0;
 		right: 0;
-		z-index: 100;
+		z-index: 1600;
 	}
 	
 	.head-img{

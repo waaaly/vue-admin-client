@@ -9,12 +9,10 @@ import vCharts from 'v-charts'
 import axios from 'axios'
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
-import moment from 'moment'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 // use
 Vue.use(mavonEditor)
-Vue.prototype.$moment = moment
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

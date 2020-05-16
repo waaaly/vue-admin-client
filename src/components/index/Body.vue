@@ -1,7 +1,7 @@
 <template>
 	<div  class="body-box">
 		<el-row :gutter="20" type="flex" justify="space-between">
-			<el-col >
+			<el-col :span="16">
 				<body-left-index v-if="title=='博客首页'"></body-left-index>
 				<body-left-list v-if="title=='文章列表'"></body-left-list>
 				<body-left-detail v-if="title=='文章详情'"></body-left-detail>
